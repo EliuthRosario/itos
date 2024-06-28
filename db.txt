@@ -1,0 +1,6 @@
+create table clientes(idCliente int(10) auto_increment primary key, numeroDocumento int(15), nombres varchar(50), apellidos varchar(50), telefono varchar(15), email varchar(30), direccion varchar(30));
+create table usuarios(idUsuario int(10) auto_increment primary key, usuario varchar(30), contrasena varchar(200), estado int(2), token varchar(200), tokenPassword varchar(200), idCliente int(10), foreign key(idCliente) references clientes(idCliente));
+create table categorias(idCategoria int(10) auto_increment primary key, nombreCategoria varchar(20));
+create table productos(idProductos int(10) auto_increment primary key, nombreProducto varchar(20), precio int(20), descuento int(3), imagen varchar(200), descripcion varchar(200), idCategoria int(10), foreign key(idCategoria) references categorias(idCategoria));
+create table factura(idFactura int(10) auto_increment primary key, idTransaccion varchar(100), fecha varchar(20), total int(20), email varchar(30), idCliente int(10), foreign key(idCliente) references clientes(idCliente));
+create table detalles_factura(idFactura int(10), idProducto int(10), precio int(20), cantidad int(5), foreign key(idFactura) references factura(idFactura), foreign key(idProducto) references productos(idProducto))
